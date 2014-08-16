@@ -10,12 +10,14 @@ class NoteMailer < ApplicationMailer
   def review_email(user)
     return if user.notes_reviewable.empty?
 
-    summary_texts = user.notes_reviewable.map(&:summary_body)
+    @user = user
+    html = collect_responses({})[0][:body]
 
     mail(from: "Hard Reader <#{Note::REVIEW_EMAIL_ROUTE}>",
          to: user.email,
          subject: "Your review from Hard Reader",
-         text: (["Your summaries from last week:"]+summary_texts).join("\n\n"))
+         html: html,
+         text: html.strip_tags)
 
     user.notes_reviewable.update_all(sent_at: Time.now.utc)
   end

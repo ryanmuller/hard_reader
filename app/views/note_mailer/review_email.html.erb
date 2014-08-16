@@ -1,0 +1,6 @@
+<p>Your summaries from last week:</p>
+
+<% @user.notes_reviewable.each do |note| %>
+  <p><%= link_to note.url, note.url %></p>
+  <p><%= note.summary %></p>
+<% end %>
