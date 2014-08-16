@@ -7,11 +7,16 @@ class Note < ActiveRecord::Base
   delegate :email, to: :user, prefix: true
 
   TO_READ_EMAIL_ROUTE = "read@#{ENV["MAILGUN_DOMAIN"]}"
+  REVIEW_EMAIL_ROUTE = "hi@#{ENV["MAILGUN_DOMAIN"]}"
   STRICT_URL_PATTERN = /\b((https?:\/\/|www\.)[^\s]+)\b/ 
   LIBERAL_URL_PATTERN = /\b((https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.#-]*)*)\b/
 
   def email_route
     "note-#{id}@#{ENV["MAILGUN_DOMAIN"]}"
+  end
+
+  def summary_body
+    "#{url}\n\n#{summary}"
   end
 
   def self.extract_url(text)
