@@ -5,7 +5,7 @@ class EmailsController < ApplicationController
    def post
      return head(:forbidden) unless @user
 
-     if params["to"] == Note::TO_READ_EMAIL_ROUTE
+     if params["recipient"] == Note::TO_READ_EMAIL_ROUTE
        make_note
      else
        make_summary
@@ -32,16 +32,16 @@ class EmailsController < ApplicationController
      params["stripped-text"]
    end
 
-   def note_id_by_receiver
-     Note.id_by_email_route(params["to"])
+   def note_id_by_recipient
+     Note.id_by_email_route(params["recipient"])
    end
 
    def fetch_note
-     @note ||= @user.notes.find note_id_by_receiver
+     @note ||= @user.notes.find note_id_by_recipient
    end
 
    def fetch_user
-     @user ||= User.find_by email: params["from"]
+     @user ||= User.find_by email: params["sender"]
    end
 
    def fetch_url

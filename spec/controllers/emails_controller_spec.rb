@@ -16,8 +16,10 @@ describe EmailsController do
   let(:text) { "" }
   let(:params) do
     {
-      from: from,
-      to: to,
+      from: "Fancy user <#{from}>",
+      sender: from,
+      to: "Fancy route <#{to}>",
+      recipient: to,
       subject: "Test subject",
       "stripped-text" => text
     }.with_indifferent_access
