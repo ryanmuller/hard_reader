@@ -45,5 +45,4 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
-gem 'sidekiq'
 gem 'rest-client'
