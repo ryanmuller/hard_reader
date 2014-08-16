@@ -1,8 +1,8 @@
 <% if current_user %>
   <ol>
-    <li>Email the URL of the article you want to read.</li>
+    <li>Email the URL of the article you want to read to <%= link_to Note::TO_READ_EMAIL_ROUTE, "mailto:#{Note::TO_READ_EMAIL_ROUTE}" %> from <%= current_user.email %>.</li>
     <li>Respond to the email from Hard Reader with your summary.</li>
-    <li>You'll get a collection of your summaries in about a week.</li>
+    <li>You'll get a review of your summaries in about a week.</li>
   </ol>
 <% else %>
   <ul>
