@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HardReader</title>
+  <title>Hard Reader</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= yield %>
+  <div class="container">
+    <h1><i class="icon icon-book"></i> HARD<i class="icon icon-bolt"></i>ЯEADER <i class="icon icon-book"></i></h1>
+
+    <% if notice %>
+      <div class="alert alert-info"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-warning"><%= alert %></div>
+    <% end %>
+
+    <%= yield %>
+  </div>
 </body>
 </html>

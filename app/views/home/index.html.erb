@@ -1,14 +1,23 @@
-<% if current_user %>
-  <ol>
-    <li>Email the URL of the article you want to read to <%= link_to Note::TO_READ_EMAIL_ROUTE, "mailto:#{Note::TO_READ_EMAIL_ROUTE}" %> from <%= current_user.email %>.</li>
-    <li>Respond to the email from Hard Reader with your summary.</li>
-    <li>You'll get a review of your summaries in about a week.</li>
-  </ol>
-<% else %>
-  <ul>
-    <li><%= link_to "Sign up", new_user_registration_path %></li>
-    <li><%= link_to "Sign in", new_user_session_path %></li>
-  </ul>
-<% end %>
+<hr>
+<h2>How it works</h2>
 
+<% unless user_signed_in? %> 
+  <p class="lead">Hard Reader works entirely through email once you're signed up, and you won't be bothered except when you choose to send an email.</p>
 
+  <p><%= link_to "Sign up", new_user_registration_path %> or 
+     <%= link_to "Sign in", new_user_session_path %></p>
+ <% end %>
+
+<p class="lead">Just three steps:</p>
+<ol>
+  <li>Email a link of the article you want to read to <code><%= link_to Note::TO_READ_EMAIL_ROUTE, "mailto:#{Note::TO_READ_EMAIL_ROUTE}" %></code> from the email you signed up with <%= "(#{current_user.email})" if user_signed_in? %>.</li>
+  <li>Respond to the email from Hard Reader with your summary.</li>
+  <li>You'll get a review of your summaries in about a week.</li>
+</ol>
+<hr>
+<h2>Why it works</h2>
+<p class="lead">Many of us spend a lot of time reading without knowing how much we're really getting from it. We may meticuously save bookmarks hoping to one day return for a deeper read. Hard Reader keeps you accountable. Every link you send to Hard Reader is sent to your email, forcing you to process it.* By writing a summary and replying to Hard Reader, you're forcing more engagement with the material at the time of reading. You'll also get the proven memory benefit of the spacing effect by reviewing your summaries a week later.</p>
+
+<p>* Particularly if you're doing <%= link_to "inbox zero", "http://www.43folders.com/izero" %>.</p>
+
+<p>Hard Reader was inspired by Shane Parrish's <%= link_to "system for remembering what you read", "http://www.farnamstreetblog.com/2014/05/remembering-what-you-read/" %>.
