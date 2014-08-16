@@ -1,0 +1,15 @@
+<% if current_user %>
+  <ol>
+    <li>Get the bookmarklet.</li>
+    <li>When you find a page to read, click the bookmarklet.</li>
+    <li>Respond to the email from Hard Reader with your summary.</li>
+    <li>You'll get a collection of your summaries in about a week.</li>
+  </ol>
+<% else %>
+  <ul>
+    <li><%= link_to "Sign up", new_user_registration_path %></li>
+    <li><%= link_to "Sign in", new_user_session_path %></li>
+  </ul>
+<% end %>
+
+
