@@ -1,11 +1,10 @@
-<hr>
 <h2>How it works</h2>
 
 <% unless user_signed_in? %> 
   <p class="lead">Hard Reader works entirely through email once you're signed up, and you won't be bothered except when you choose to send an email.</p>
 
-  <p><%= link_to "Sign up", new_user_registration_path %> or 
-     <%= link_to "Sign in", new_user_session_path %></p>
+  <p><%= link_to "Sign up", new_user_registration_path, class: "btn btn-default" %> or 
+     <%= link_to "Sign in", new_user_session_path, class: "btn btn-default" %></p>
  <% end %>
 
 <p class="lead">Just three steps:</p>
