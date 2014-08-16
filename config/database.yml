@@ -12,6 +12,7 @@ test:
   encoding: utf8
   database: hard_reader_test
   pool: 5
+  host: localhost
   username: 
   password:
 

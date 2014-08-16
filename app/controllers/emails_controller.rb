@@ -5,11 +5,12 @@ class EmailsController < ApplicationController
    def post
      return head(:forbidden) unless @user
 
-     if params["to"] == "read@mg.learnstream.org"
+     if params["to"] == Note::TO_READ_EMAIL_ROUTE
        make_note
      else
        make_summary
      end
+     render :text => "OK"
    end
 
    private
@@ -17,16 +18,14 @@ class EmailsController < ApplicationController
    def make_note
      if fetch_url
        @note = Note.create user: @user, url: @url
-       NoteMailer.delay.to_read_email(note)
+       #NoteMailer.delay.to_read_email(note)
      end
-     render :text => "OK"
    end
 
    def make_summary
      if fetch_note
        @note.update_attributes summary: actual_body
      end
-     render :text => "OK"
    end
    
    def actual_body
@@ -46,7 +45,6 @@ class EmailsController < ApplicationController
    end
 
    def fetch_url
-     @url ||= Array(Note.STRICT_URL_PATTERN.match(actual_body))[0] \
-       || Array(Note.LIBERAL_URL_PATTERN.match(actual_body))[0]
+     @url ||= Note.extract_url(actual_body)
    end
 end

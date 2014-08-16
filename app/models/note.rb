@@ -6,6 +6,7 @@ class Note < ActiveRecord::Base
 
   delegate :email, to: :user, prefix: true
 
+  TO_READ_EMAIL_ROUTE = "read@mg.learnstream.org"
   STRICT_URL_PATTERN = /\b((https?:\/\/|www\.)[^\s]+)\b/ 
   LIBERAL_URL_PATTERN = /\b((https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.#-]*)*)\b/
 
@@ -13,9 +14,14 @@ class Note < ActiveRecord::Base
     "note-#{id}@mg.learnstream.org"
   end
 
-  def self.id_by_email_route
+  def self.extract_url(text)
+    Array(STRICT_URL_PATTERN.match(text))[0] \
+      || Array(LIBERAL_URL_PATTERN.match(text))[0]
+  end
+
+  def self.id_by_email_route(email_route)
      # note-123@mg.learnstream.org -> 123
-     params["to"].split("@")[0].split("-")[1].to_i
+     email_route.split("@")[0].split("-")[1].to_i
   end
 
   def self.latest_to_review
