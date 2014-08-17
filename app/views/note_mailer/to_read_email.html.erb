@@ -1,0 +1,9 @@
+<p>
+<% if @note.url %>
+  Go to <%= link_to @note.url, @note.url %>.
+<% end %>
+Reply to this email with your summary. Your summaries will be recorded and sent for your review in about a week.</p>
+
+<p>On <%= @note.created_at.strftime("%A, %b %d") %>, you sent:</p>
+
+<blockquote><%= @note.context %></blockquote>

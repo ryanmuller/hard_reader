@@ -17,7 +17,7 @@ class EmailsController < ApplicationController
 
    def make_note
      if fetch_url
-       @note = Note.create user: @user, url: @url
+       @note = Note.create user: @user, url: @url, context: actual_body
        NoteMailer.delay.to_read_email(@note)
      end
    end
