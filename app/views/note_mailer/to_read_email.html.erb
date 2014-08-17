@@ -6,4 +6,4 @@ Reply to this email with your summary. Your summaries will be recorded and sent 
 
 <p>On <%= @note.created_at.strftime("%A, %b %d") %>, you sent:</p>
 
-<blockquote><%= @note.context %></blockquote>
+<blockquote><%= sanitize @note.context %></blockquote>
