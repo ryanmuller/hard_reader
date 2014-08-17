@@ -22,6 +22,6 @@ class NoteMailer < ApplicationMailer
   end
 
   def generate_html
-    @html ||= collect_responses({})[0][:body]
+    @html ||= collect_responses({})[0][:body].html_safe
   end
 end
