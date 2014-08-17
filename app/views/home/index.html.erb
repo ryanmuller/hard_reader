@@ -1,22 +1,28 @@
 <h2>How it works</h2>
 
 <% unless user_signed_in? %> 
-  <p class="lead">Hard Reader works entirely through email once you're signed up, and you won't be bothered except when you choose to send an email.</p>
+  <p>Hard Reader works entirely through email once you're signed up, and you won't be bothered except when you choose to send an email.</p>
 
   <p><%= link_to "Sign up", new_user_registration_path, class: "btn btn-default" %> or 
      <%= link_to "Sign in", new_user_session_path, class: "btn btn-default" %></p>
  <% end %>
 
-<p class="lead">Just three steps:</p>
+<p>Just three steps:</p>
 <ol>
-  <li>Email a link of the article you want to read to <code><%= link_to Note::TO_READ_EMAIL_ROUTE, "mailto:#{Note::TO_READ_EMAIL_ROUTE}" %></code> from the email you signed up with <%= "(#{current_user.email})" if user_signed_in? %>.</li>
+  <li>Email something you want to read to <code><%= link_to Note::TO_READ_EMAIL_ROUTE, "mailto:#{Note::TO_READ_EMAIL_ROUTE}" %></code> from the email you signed up with<%= " (#{current_user.email})" if user_signed_in? %>.</li>
   <li>Respond to the email from Hard Reader with your summary.</li>
   <li>You'll get a review of your summaries in about a week.</li>
 </ol>
-<hr>
 <h2>Why it works</h2>
-<p class="lead">Many of us spend a lot of time reading without knowing how much we're really getting from it. We may meticulously save bookmarks hoping to one day return for a deeper read. Hard Reader keeps you accountable. Every link you send to Hard Reader is sent back to your inbox, forcing you to process it.* By writing a summary and replying to Hard Reader, you're forcing more engagement with the material at the time of reading. You'll also get the proven memory benefit of the spacing effect by reviewing your summaries a week later.</p>
+<p>Many of us spend a lot of time reading without knowing how much we're really getting from it. We may meticulously save bookmarks hoping to one day return for a deeper read. Hard Reader keeps you accountable. Everything you send to Hard Reader is sent back to your inbox, encouraging you to process it. By writing a summary and replying to Hard Reader, you're creating more engagement with the material at the time of reading. You'll also get the proven memory benefit of the spacing effect by reviewing your summaries a week later.</p>
 
-<p>* Particularly if you're doing <%= link_to "inbox zero", "http://www.43folders.com/izero" %>.</p>
+<% if user_signed_in? %>
 
-<p>Hard Reader was inspired by Shane Parrish's <%= link_to "system for remembering what you read", "http://www.farnamstreetblog.com/2014/05/remembering-what-you-read/" %>.
+<h2>Try it out</h2>
+
+<p>These are some of the articles that inspired Hard Reader. Clicking will open your default email program.</p>
+
+<p><a href="mailto:<%= Note::TO_READ_EMAIL_ROUTE %>?Body=http%3A//www.farnamstreetblog.com/2014/05/remembering-what-you-read/">A System for Remembering What You Read</a> (<a href="http://www.farnamstreetblog.com/2014/05/remembering-what-you-read/">original link</a>)</p>
+
+<p><a href="mailto:<%= Note::TO_READ_EMAIL_ROUTE %>?Body=http%3A//www.nytimes.com/2010/09/07/health/views/07mind.html">Forget What You Know About Good Study Habits</a> (<a href="http://www.nytimes.com/2010/09/07/health/views/07mind.html">original link</a>)</p>
+<% end %>
