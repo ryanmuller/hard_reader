@@ -42,7 +42,7 @@ describe EmailsController do
         let(:text) { "http://google.com" }
 
         it "makes note" do
-          expect(Note).to receive(:create).with(user: user, url: text)
+          expect(Note).to receive(:create).with(user: user, url: text, context: text)
           post_with_params
         end
 
