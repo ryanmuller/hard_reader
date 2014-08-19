@@ -1,5 +1,7 @@
-<p>Welcome <%= @email %>!</p>
+<p>Welcome to Hard Reader!</p>
 
 <p>You can confirm your account email through the link below:</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>Then you'll be ready for hard reading! Just send anything you want to read to <%= link_to "read@mg.learnstream.org", "mailto:read@mg.learnstream.org" %></p>
